@@ -15,6 +15,6 @@ for(let i = 0; i < baris; i++) {
             }
         }
     }
-    bintang += ""
+    bintang += "\n"
 }
-console.log(bintang)
+console.log(baris)
