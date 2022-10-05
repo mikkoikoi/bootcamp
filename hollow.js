@@ -1,4 +1,4 @@
-let baris = 5
+let baris = 6;
 let bintang = "";
 
 for(let i = 0; i < baris; i++) {
