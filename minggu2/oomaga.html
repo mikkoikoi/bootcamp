@@ -9,53 +9,77 @@
     <ul id="daftar"></ul>
 
     <input type="text" name="input" id="input" />
-    <button id="btn1" onclick="inputData(), notif()">Simpan</button>
-    <input type="text" name="delete" id="delete" />
-    <button id="btn3" onclick="delData()" style="font-size:15px">Hapus<i class="fa fa-remove"></i></button>
-
-    <button id="btn3" onclick="editData()">Edit</button>
+    <button id="btn1" onclick="inputData()">Tambah</button>
+   
+    <!-- <input type="text" name="delete" id="delete" />
+    <button id="btn2" onclick="removeData()">Hapus</button>
+    
     <input type="text" name="edit" id="edit" /> 
+    <button id="btn3" onclick="editData()">Edit</button> -->
+    
+
     <script>
             var input = document.getElementById("input");
             input.addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
             event.preventDefault();
-            document.getElementById("btn1").click();
+            document.getElementById("add-name").click();
                 }
             })
 
             let benda = ["buku", "pensil", "pulpen", "penggaris"];
             let daftar = document.getElementById("daftar");
 
-            function notif() {
-                alert ('Berhasil Menambah!')
-            }
 
             function printData() {
                 let daftar = document.getElementById("daftar");
                 daftar.innerHTML = ""
                 for(let i = 0; i < benda.length; i++) {
-                    daftar.innerHTML += "<li>" + benda[i] + "</li>";
+                    let tombolHapus = `<a href = "#" onclick = "removeData(${i})">Hapus</a>`;
+                    let tombolEdit = `<a href = "#" onclick = "editData(${i})">Edit</a>`;
+                    daftar.innerHTML += "<li>" + benda[i]+ " " + tombolHapus + " "+ tombolEdit +"</li>";
+                    
+                    }
                 }
-            }
-
 
             function inputData() {
                 let input = document.getElementById("input");
                 if (input.value != "") {
                     benda.push(input.value);
                     printData();
+                    alert ('Berhasil Menambah!')
                 }
              }
-            function delData() {
-                let del = document.getElementById("delete");
-                    benda.pop(del.value);
+            // function delData() {
+            //     let del = document.getElementById("delete");
+            //         benda.pop(del.value);
+            //         printData();
+            //     }
+            // function editData() {
+            //     let edit = document.getElementById("edit");
+            //     if (edit.value != "") {
+            //     benda.splice(edit.value, 0, "")
+            //     printData()
+            //     }
+            // }
+            function removeData(i) {
+                let check = confirm("Hapus?");
+                if (check) {
+                    benda.splice(i, 1);
+                    alert("Berhasil Menghapus!");
+                    printData();
+                } 
+            }
+
+            function editData(j) {
+                let daftarBendaLama = benda[j];
+                let check = prompt("Input data baru", daftarBendaLama);
+                console.log(check)
+                if (check != "") {
+                    benda[j] = check;
+                    alert("Berhasil Mengedit!");
                     printData();
                 }
-            function editData() {
-                let edit = document.getElementById("edit");
-                benda.splice(edit.value())
-                printData()
             }
             printData();
     </script>
