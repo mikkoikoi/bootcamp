@@ -1,9 +1,9 @@
 let namaLu;
 do {
     namaLu = prompt("siapa nama lu?")
-    if (namaLu != "x") {
+    // if (namaLu != "x") {
         document.write("<h1>selamat datang tuan hitam </h1><br>")
-    }
+    // }
     
 }while (namaLu != "x");
 // {

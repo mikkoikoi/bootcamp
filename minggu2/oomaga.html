@@ -3,20 +3,28 @@
     <title>
         hola
     </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <ul id="daftar"></ul>
 
     <input type="text" name="input" id="input" />
-    <button id="btn" onclick="inputData(), notif()">Simpan</button>
+    <button id="btn1" onclick="inputData(), notif()">Simpan</button>
     <input type="text" name="delete" id="delete" />
-    <button id="btn" onclick="delData()">Hapus</input>
+    <button id="btn3" onclick="delData()" style="font-size:15px">Hapus<i class="fa fa-remove"></i></button>
 
-    <button id="btn" onclick="editData()">Edit</button>
+    <button id="btn3" onclick="editData()">Edit</button>
     <input type="text" name="edit" id="edit" /> 
     <script>
+            var input = document.getElementById("input");
+            input.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("btn1").click();
+                }
+            })
 
-            let benda = ["buku", "pensil", "pulpen"];
+            let benda = ["buku", "pensil", "pulpen", "penggaris"];
             let daftar = document.getElementById("daftar");
 
             function notif() {
@@ -46,7 +54,7 @@
                 }
             function editData() {
                 let edit = document.getElementById("edit");
-                benda.splice(edit.value(""))
+                benda.splice(edit.value())
                 printData()
             }
             printData();
