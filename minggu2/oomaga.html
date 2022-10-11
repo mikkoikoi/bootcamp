@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        hola
+    </title>
+</head>
+<body>
+    <ul id="daftar"></ul>
+
+    <input type="text" name="input" id="input" />
+    <button id="btn" onclick="inputData(), notif()">Simpan</button>
+    <input type="text" name="delete" id="delete" />
+    <button id="btn" onclick="delData()">Hapus</input>
+
+    <button id="btn" onclick="editData()">Edit</button>
+    <input type="text" name="edit" id="edit" /> 
+    <script>
+
+            let benda = ["buku", "pensil", "pulpen"];
+            let daftar = document.getElementById("daftar");
+
+            function notif() {
+                alert ('Berhasil Menambah!')
+            }
+
+            function printData() {
+                let daftar = document.getElementById("daftar");
+                daftar.innerHTML = ""
+                for(let i = 0; i < benda.length; i++) {
+                    daftar.innerHTML += "<li>" + benda[i] + "</li>";
+                }
+            }
+
+
+            function inputData() {
+                let input = document.getElementById("input");
+                if (input.value != "") {
+                    benda.push(input.value);
+                    printData();
+                }
+             }
+            function delData() {
+                let del = document.getElementById("delete");
+                    benda.pop(del.value);
+                    printData();
+                }
+            function editData() {
+                let edit = document.getElementById("edit");
+                benda.splice(edit.value(""))
+                printData()
+            }
+            printData();
+    </script>
+</body>
+</html>
