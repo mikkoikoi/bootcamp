@@ -9,6 +9,6 @@ function cari_merk (cari_index, merk_dicari) {
  }
  return ketemu   
 }
-let hasil
-hasil = cari_merk(merk, "Volkswagen")
-console.log("ketemu di : " + hasil)
+// let hasil
+// hasil = cari_merk(merk, "Nissan")
+console.log(cari_merk(merk, "Nissan"))
