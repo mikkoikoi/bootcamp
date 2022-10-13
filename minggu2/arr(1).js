@@ -10,10 +10,11 @@ console.log(buah)
 // buah.shift()
 // console.log(buah)
 
-let array2 = buah.slice(0,1)
-console.log(buah)
-console.log(array2)
-
+// let array2 = buah.slice(0,1)
+// console.log(buah)
+// console.log(array2)
+// buah.splice(2,2, "KESEMEK")
+// console.log(buah)
 
 // for(let index in buah) {
 //     console.log(index)
@@ -22,3 +23,6 @@ console.log(array2)
 // for(let element of buah) {
 //     console.log(element)
 // }
+delete buah[1];
+delete buah[buah.length - 1];
+console.log(buah)

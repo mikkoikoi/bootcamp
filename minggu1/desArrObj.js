@@ -23,8 +23,11 @@ let profile = {
 // console.log(`my name is ${firstName} ${lastName} and i'm ${age} years old`)
 // const{firstName, age, isMale = false} = profile 
 
-const {firstName : namaLokal, lastName : akhiranLokal, age : umurLokal} = profile
+// const {firstName : namaLokal, lastName : akhiranLokal, age : umurLokal} = profile
+const {firstName, age, isMale} = profile
 
-console.log(namaLokal)
-console.log(akhiranLokal)
-console.log(umurLokal)
+// console.log(namaLokal)
+// console.log(akhiranLokal)
+// console.log(umurLokal)
+console.log(firstName)
+console.log(isMale)

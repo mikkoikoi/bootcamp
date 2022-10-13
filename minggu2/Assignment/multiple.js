@@ -7,6 +7,8 @@ function arrBaru () {
            arr2.push(angka)
         }
     }
-    console.log(arr2)
+    return arr2
 }
-arrBaru()
+let hasil
+hasil = arrBaru()
+console.log(hasil)
