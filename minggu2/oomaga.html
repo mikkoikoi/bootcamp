@@ -40,10 +40,8 @@
                     let tombolHapus = `<a href = "#" onclick = "removeData(${i})">Hapus</a>`;
                     let tombolEdit = `<a href = "#" onclick = "editData(${i})">Edit</a>`;
                     daftar.innerHTML += "<li>" + benda[i]+ " " + tombolHapus + " "+ tombolEdit +"</li>";
-                    
                     }
                 }
-
             function inputData() {
                 let input = document.getElementById("input");
                 if (input.value != "") {

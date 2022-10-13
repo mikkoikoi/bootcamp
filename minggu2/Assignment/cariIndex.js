@@ -7,7 +7,7 @@ function cari_merk (cari_index, merk_dicari) {
         ketemu = i
     }
  }
- return ketemu   
+ return "ada " + merk_dicari + " di index ke - " + ketemu
 }
 // let hasil
 // hasil = cari_merk(merk, "Nissan")
