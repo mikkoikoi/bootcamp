@@ -14,8 +14,6 @@ const user = {
     true : "tipe data true",
     false : "tipe data false"
 }
-delete user.nama;
-console.log(user.nama)
 console.log(`Halo, nama saya ${user.nama} dan ${user[1]}`)
 console.log(`Saya tinggal di ${user.tempatLahir} dan lahir pada ${user.tanggalLahir}`)
 console.log(`Saya adalah seorang ${user['Jenis Kelamin']}`)
