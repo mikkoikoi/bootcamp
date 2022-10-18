@@ -25,6 +25,7 @@ console.log(output);
 
 
 // functional
-array.sort((a, b) => a - b)
-const theSorted = array
+
+const urut = array.sort((a, b) => a - b)
+const theSorted = urut
 console.log(theSorted)
