@@ -8,7 +8,7 @@
 
 
 <div class="form-data">
-    <form onsubmit="event.preventDefault();onFormSubmit();userException(data)   " autocomplete="off">
+    <form onsubmit="event.preventDefault();onFormSubmit(); " autocomplete="off">
         <div>
             <label>NIK</label>
             <input type="number" name="nik" id="nik">
@@ -46,13 +46,16 @@
 var selectedRow = null
 
 function onFormSubmit() {
+    if(readFormData() == null){
         var formData = readFormData();
         if (selectedRow == null)
             insertNewRecord(formData);
         else
             updateRecord(formData);
         resetForm();
-        
+    } else {
+            throw new userException("Data harus diisi")
+    }
     }
 
 function readFormData() {
@@ -107,14 +110,8 @@ function onDelete(td) {
     }
 
 function userException(data) {
-    if (data == "") {
-        throw "Data ini harus diisi"
-    }
-}
-try {
-    userException(data)
-} catch (e) {
-    console.log(e)
+    this.message = message
+    this.name = "UserException"
 }
 }
 </script>
