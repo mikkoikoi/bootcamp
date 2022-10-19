@@ -8,10 +8,10 @@
 
 
 <div class="form-data">
-    <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">
+    <form onsubmit="event.preventDefault();onFormSubmit();userException(data)   " autocomplete="off">
         <div>
             <label>NIK</label>
-            <input type="text" name="nik" id="nik">
+            <input type="number" name="nik" id="nik">
         </div>
         <div>
             <label>NAMA</label>
@@ -52,6 +52,7 @@ function onFormSubmit() {
         else
             updateRecord(formData);
         resetForm();
+        
     }
 
 function readFormData() {
@@ -104,6 +105,17 @@ function onDelete(td) {
         document.getElementById("listData").deleteRow(row.rowIndex);
         resetForm();
     }
+
+function userException(data) {
+    if (data == "") {
+        throw "Data ini harus diisi"
+    }
+}
+try {
+    userException(data)
+} catch (e) {
+    console.log(e)
+}
 }
 </script>
 </body>
