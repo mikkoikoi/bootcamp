@@ -8,7 +8,7 @@ const books = [
   { title: 'Harry Potter and the Deathly Hallows', author: 'J.K Rowling', sales: 4475152 },
 ];
 
-const filt = books.filter((isi) => isi.sales >= 1000000 )
+const filt = books.filter(isi => isi.sales >= 1000000 )
 const loop = filt.map((isi => `${isi.author} adalah penulis buku ${isi.title} yang hebat!` ))
 const greatAuthors = loop
 console.log(greatAuthors)
