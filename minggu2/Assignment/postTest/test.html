@@ -47,7 +47,7 @@ var selectedRow = null
 
 function onFormSubmit() {
     const data = readFormData() 
-    if(!data == ""){
+    if(data !== ""){
         var formData = readFormData();
         if (selectedRow == null)
             insertNewRecord(formData);
