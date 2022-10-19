@@ -54,7 +54,7 @@ function onFormSubmit() {
             updateRecord(formData);
         resetForm();
     } else {
-            throw new userException("Data harus diisi")
+            throw new ReferenceError()
     }
     }
 
