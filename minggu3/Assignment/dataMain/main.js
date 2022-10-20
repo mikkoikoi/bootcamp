@@ -1,48 +1,3 @@
-<!DOCTYPE html>
-<head>
-    <title>
-        test
-    </title>
-</head>
-<link rel="stylesheet" href="style.css">
-
-
-<div class="form-data">
-    <form onsubmit="event.preventDefault();onFormSubmit(); " autocomplete="off">
-        <div>
-            <label>NIK</label>
-            <input type="text" name="nik" id="nik">
-        </div>
-        <div>
-            <label>NAMA</label>
-            <input type="text" name="nama" id="nama">
-        </div>
-        <div>
-            <label>UMUR</label>
-            <input type="text" name="umur" id="umur">
-        </div>
-        <div  class="form-action-buttons">
-            <input type="submit" value="Submit">
-        </div>
-    </form>
-</div>
-<br/>
-<div class = "tabel-data">
-    <table class="list" id="listData">
-        <thead>
-            <tr>
-                <th>NIK</th>
-                <th>NAMA</th>
-                <th>UMUR</th>
-                <th>AKSI</th>
-            </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-    </table>
-</div>
-<script>
 var selectedRow = null
 
 function onFormSubmit() {
@@ -132,6 +87,3 @@ function onDelete(td) {
 
 
 }
-</script>
-</body>
-</html> 
