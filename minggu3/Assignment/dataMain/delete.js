@@ -4,6 +4,5 @@ function onDelete(td) {
         document.getElementById("listData").deleteRow(row.rowIndex);
         resetForm();
     }
-
-
 }
+export{onDelete}

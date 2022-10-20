@@ -4,3 +4,4 @@ function resetForm() {
     document.getElementById("umur").value = "";
     selectedRow = null;
 }
+export{resetForm}

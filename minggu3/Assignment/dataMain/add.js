@@ -11,3 +11,5 @@ function insertNewRecord(data) {
     cell3.innerHTML = `<button class="button" onClick="onEdit(this)">Edit</button>
                        <button class="button button2" onClick="onDelete(this)">Delete</button>`
 }
+
+export{insertNewRecord}

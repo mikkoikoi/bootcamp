@@ -4,3 +4,5 @@ function updateRecord(formData) {
     selectedRow.cells[2].innerHTML = formData.umur;
     
 }
+
+export{updateRecord}

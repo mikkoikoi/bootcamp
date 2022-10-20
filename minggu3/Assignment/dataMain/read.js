@@ -6,3 +6,4 @@ function readFormData() {
     
     return formData;
 }
+export {readFormData}

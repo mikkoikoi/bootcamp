@@ -5,3 +5,5 @@ function onEdit(td) {
     document.getElementById("umur").value = selectedRow.cells[2].innerHTML;
     
 }
+
+export{onEdit}

@@ -31,3 +31,5 @@ function onFormSubmit() {
             alert(e)
         }
     }
+
+    export {onFormSubmit}
