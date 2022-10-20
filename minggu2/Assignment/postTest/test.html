@@ -11,7 +11,7 @@
     <form onsubmit="event.preventDefault();onFormSubmit(); " autocomplete="off">
         <div>
             <label>NIK</label>
-            <input type="number" name="nik" id="nik">
+            <input type="text" name="nik" id="nik">
         </div>
         <div>
             <label>NAMA</label>
@@ -19,7 +19,7 @@
         </div>
         <div>
             <label>UMUR</label>
-            <input type="number" name="umur" id="umur">
+            <input type="text" name="umur" id="umur">
         </div>
         <div  class="form-action-buttons">
             <input type="submit" value="Submit">
@@ -47,23 +47,54 @@ var selectedRow = null
 
 function onFormSubmit() {
     const data = readFormData() 
-    if(data !== ""){
-        var formData = readFormData();
+    let karakter = /^\d{16}$/;
+    const formData = readFormData();
+        if(data.nik != "" || data.nama != "" || data.umur != ""){
+        throw "Data harus diisi!"
+    }
+    
+    try { 
+        if (!karakter.test(data.nik)) {
+            throw 'NIK harus berisi 16 karakter';
+            
+    }if (isNaN(data.nik) || isNaN(data.umur)) {
+            throw "Harus diisi dengan angka positif!";
+
+    }else {
+        throw new userException(alert("Data harus diisi!"))
+    }
+        // try {
+        //         let karakter = /^\d{16}$/;
+        
+        //         if (!karakter.test(data.nik)) {
+        //         throw 'NIK harus berisi 16 karakter';
+        //         }
+
+        //         if(isNaN(data.nik) || isNaN(data.umur)) {
+        //         throw "Harus diisi dengan angka positif!"
+        //         }
+        //         } catch(e) {
+        //         alert(e)
+        //         }
         if (selectedRow == null)
             insertNewRecord(formData);
         else
             updateRecord(formData);
         resetForm();
-    } else {
-            throw new userException("Data harus diisi")
+        } catch (e) {
+        alert(e)
     }
-    }
+}
+
+
+
+
     function userException(message) {
     this.message = message
     this.name = "UserException"
 }
 
-function readFormData() {
+function readFormData() {           
     var formData = {};
     formData["nik"] = document.getElementById("nik").value;
     formData["nama"] = document.getElementById("nama").value;
