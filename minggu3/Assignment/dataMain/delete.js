@@ -1,12 +1,9 @@
-function delData(n) {
-    try {
-        if ((n == null) || (n == undefined) || (n < 0) || (n >= userData.length)) {
-            throw 'Delete function argument is wrong!';
-        }
-        data.splice(n, 1);
-        printData();
-    } catch (error) {
-        alert(error);
+function onDelete(td) {
+    if (confirm('Hapus data ini? ')) {
+        row = td.parentElement.parentElement;
+        document.getElementById("listData").deleteRow(row.rowIndex);
+        resetForm();
     }
-    
+
+
 }
