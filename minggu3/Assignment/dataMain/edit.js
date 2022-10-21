@@ -1,3 +1,4 @@
+import {selectedRow} from "./submit.js"
 function onEdit(td) {
     selectedRow = td.parentElement.parentElement;
     document.getElementById("nik").value = selectedRow.cells[0].innerHTML;

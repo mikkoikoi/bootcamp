@@ -1,3 +1,5 @@
+import {resetForm} from "./reset.js"
+
 function onDelete(td) {
     if (confirm('Hapus data ini? ')) {
         row = td.parentElement.parentElement;
@@ -6,3 +8,7 @@ function onDelete(td) {
     }
 }
 export{onDelete}
+
+
+
+

@@ -1,12 +1,17 @@
-let selectedRow =  null
-function onFormSubmit() {
+import { readFormData} from "./read.js"
+import { insertNewRecord } from "./add.js"
+import { resetForm } from "./reset.js"
+import { updateRecord } from "./update.js"
+
+let selectedRow = null;
+
+
+function onFormSubmit(event) {
     
     try { 
-        const data = readFormData() 
-        const formData = readFormData();
-
+        let data = readFormData();
         if(data.nik == "" || data.nama == "" || data.umur == ""){
-        throw "Data harus diisi!"
+        throw "Data harus diisi!";
         }
         
         let karakter = /^\d{16}$/;
@@ -17,19 +22,22 @@ function onFormSubmit() {
             throw "Harus diisi dengan angka positif!";
 
         }
-
+        
         if (selectedRow == null){
-            insertNewRecord(formData);
+            insertNewRecord(data);
             
         }else{
-            updateRecord(formData);
+            updateRecord(data);
             
         }
-        resetForm();
+        console.log(data)
+        // readFormData()
+        event.preventDefault();
+        resetForm()
     
         } catch (e) {
-            alert(e)
+            alert(e);
         }
     }
 
-    export {onFormSubmit}
+    export {onFormSubmit, selectedRow}
