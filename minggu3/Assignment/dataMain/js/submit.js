@@ -3,13 +3,14 @@ import { insertNewRecord } from "./add.js"
 import { resetForm } from "./reset.js"
 import { updateRecord } from "./update.js"
 
-let selectedRow = null;
-
+window.selectedRow = 'insert'
 
 function onFormSubmit(event) {
     
     try { 
+        
         let data = readFormData();
+        
         if(data.nik == "" || data.nama == "" || data.umur == ""){
         throw "Data harus diisi!";
         }
@@ -22,22 +23,25 @@ function onFormSubmit(event) {
             throw "Harus diisi dengan angka positif!";
 
         }
-        
-        if (selectedRow == null){
+        console.log("selected row submit",window.selectedRow)
+        if (window.selectedRow === "insert"){
             insertNewRecord(data);
+            console.log("insertNewRecord", window.selectedRow)
             
         }else{
             updateRecord(data);
+            console.log("updateRecord")
             
         }
         console.log(data)
         // readFormData()
         event.preventDefault();
         resetForm()
+       
     
         } catch (e) {
             alert(e);
         }
     }
 
-    export {onFormSubmit, selectedRow}
+    export {onFormSubmit}
