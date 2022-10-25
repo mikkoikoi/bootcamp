@@ -2,6 +2,8 @@ import { readFormData} from "./read.js"
 import { insertNewRecord } from "./add.js"
 import { resetForm } from "./reset.js"
 import { updateRecord } from "./update.js"
+import { Err } from "./error.js"
+
 
 window.selectedRow = 'insert'
 
@@ -12,15 +14,15 @@ function onFormSubmit(event) {
         let data = readFormData();
         
         if(data.nik == "" || data.nama == "" || data.umur == ""){
-        throw "Data harus diisi!";
+        throw new Err("Data harus diisi!");
         }
         
         let karakter = /^\d{16}$/;
         if (!karakter.test(data.nik)) {
-            throw 'NIK harus berisi 16 karakter';
+            throw new Err ('NIK harus berisi 16 karakter');
             
         }if (isNaN(data.nik) || isNaN(data.umur)) {
-            throw "Harus diisi dengan angka positif!";
+            throw new Err ("Harus diisi dengan angka positif!");
 
         }
         console.log("selected row submit",window.selectedRow)

@@ -15,7 +15,7 @@
 // console.log(barang1.price);
 // console.log(barang1.detail())
 
-// kenapa oop dibutuhkan dalam javscript
+// kenapa oop dibutuhkan dalam javascript
 
 function Person(firstName, lastName) {
     this.firsName = firstName
