@@ -21,32 +21,47 @@ const btn = document.querySelector('.btn')
 //   }, 1000)
 // })
 
+// btn.addEventListener('click', () => {
+//     setTimeout(() => {
+//         first.style.color = 'red'
+//     , 1000});
+//     setTimeout(() => {
+//         first.style.color = 'red'
+//     , 1000});
+//     setTimeout(() => {
+//         first.style.color = 'red'
+//     , 1000});
+// })
+
 btn.addEventListener('click', () => {
-const count =() => {
-new Promise(resolve => {
-    setTimeout(()=> {
-        resolve(first.style.color = "red")
-    }, 1000)
+    promise1
+    .then(() => {
+        first.style.color = 'red'
+        return promise2()
+    })
+    .then(() => {
+        second.style.color = 'blue'
+        return promise3()
+    })
+    .then(() => {
+        third.style.color = 'green'
+    })
 })
-new Promise(resolve => {
-    setTimeout(()=> {
-        resolve(second.style.color = "blue")
-    })
-}, 2000)
-new Promise(resolve => {
-    setTimeout(()=> {
-        resolve(second.style.color = "green")
-    })
-}, 3000)
-}
 
+function promise1 () {
+    setTimeout(
+        resolve()
+        , 1000)
+    }
 
-})
-function tangkap() {
-    count()
-    .then((value) => {
-        console.log(value)
-        return count()
-    })
-}
-tangkap()
+    function promise1 () {
+        setTimeout(
+            resolve()
+            , 3000)
+        }
+
+        function promise1 () {
+            setTimeout(
+                resolve()
+                , 2000)
+            }
