@@ -33,35 +33,76 @@ const btn = document.querySelector('.btn')
 //     , 1000});
 // })
 
+// btn.addEventListener('click', () => {
+//     return new Promise(function (resolve, reject) {
+//         setTimeout(() => {
+//             resolve(first.style.color = "red")
+//         }, 1000)
+//         setTimeout(() => {
+//             resolve(second.style.color = "blue")
+//         }, 2000)
+//         setTimeout(() => {
+//             resolve(third.style.color = "green")
+//         }, 3000)
+//     })
+// })
+
+
 btn.addEventListener('click', () => {
-    promise1
-    .then(() => {
-        first.style.color = 'red'
-        return promise2()
+    return new Promise(function (resolve, reject) {
+        resolve()
     })
     .then(() => {
-        second.style.color = 'blue'
-        return promise3()
+        setTimeout(() => {
+            first.style.color ="red"
+        }, 1000)
+        return new Promise(function (resolve){
+          resolve()  
+        })
     })
     .then(() => {
-        third.style.color = 'green'
+        setTimeout(() => {
+            second.style.color =  "blue"
+        }, 2000)
+        return new Promise(function (resolve) {
+            resolve()
+        })
+    })
+    .then(() => {
+        setTimeout(() => {
+            third.style.color = "green"
+        }, 3000)
     })
 })
 
-function promise1 () {
-    setTimeout(
-        resolve()
-        , 1000)
-    }
 
-    function promise1 () {
-        setTimeout(
-            resolve()
-            , 3000)
-        }
+//     .then(() => {
+//         first.style.color = 'red'
+//         return promise2()
+//     })
+//     .then(() => {
+//         second.style.color = 'blue'
+//         return promise3()
+//     })
+//     .then(() => {
+//         third.style.color = 'green'
+//     })
+// })
 
-        function promise1 () {
-            setTimeout(
-                resolve()
-                , 2000)
-            }
+// function promise1 (resolve) {
+//     setTimeout(
+//         resolve()
+//         , 1000)
+//     }
+
+//     function promise1 (resolve) {
+//         setTimeout(
+//             resolve()
+//             , 3000)
+//         }
+
+//         function promise1 (resolve) {
+//             setTimeout(
+//                 resolve()
+//                 , 2000)
+//             }
