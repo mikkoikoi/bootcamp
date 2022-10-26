@@ -7,15 +7,25 @@ import { onDelete } from "./delete.js";
 import { onEdit } from "./edit.js";
 import { tampilData } from "./tampil.js";
 
-window.userData =[]
+let datas
 
 
-fetch('iniData.json')
+datas = fetch('./js/iniData.json', {
+    method: 'GET'
+})
 .then((response) => {
     console.log(response)
+    if (!response.ok) {
+      throw new Error(`HTTP error, status = ${response.status}`);
+    }
     return response.json();
   })
-
+  .then((data) => {
+      console.log(data)
+      return data
+  })
+  
+  console.log(datas)
 
 document.addEventListener("DOMContentLoaded", (event)=> {
     tampilData()
