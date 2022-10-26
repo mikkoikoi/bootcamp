@@ -21,8 +21,7 @@ datas = fetch('./js/iniData.json', {
     return response.json();
   })
   .then((data) => {
-      console.log(data)
-      return data
+      tampilData(data)
   })
   
   console.log(datas)
