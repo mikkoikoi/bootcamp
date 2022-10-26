@@ -13,18 +13,18 @@
 //   })
 function tampilData (data) {
     console.log(data)
-    console.log(data.data[0])
+    console.log(data.info[0])
     const tbodyElement = document.getElementById("databody")
-    // const rows = window.userData.map((data, i)=>`<tr>
-    // <td>${data.nik}</td>
-    // <td>${data.nama}</td>
-    // <td>${data.umur}</td>
-    // <td>
-    //     <button class="button" data-edit="${data.nama}" id="btn1">Edit</button>
-    //     <button class="button button2" data-del="${data.nik}" id="btn2">Delete</button>
-    // </td>
-    //     </tr>`).join("")
-    //     tbodyElement.innerHTML=rows
+    data.info.map((data, i)=>`<tr>
+    <td>${data.nik}</td>
+    <td>${data.nama}</td>
+    <td>${data.umur}</td>
+    <td>
+        <button class="button" data-edit="${data.nama}" id="btn1">Edit</button>
+        <button class="button button2" data-del="${data.nik}" id="btn2">Delete</button>
+    </td>
+        </tr>`).join("")
+        tbodyElement.innerHTML=data.info[0]
 }
 
 export{tampilData}
