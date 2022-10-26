@@ -26,7 +26,7 @@ function tampilData (data) {
         <button class="button button2" data-del="${data.nik}" id="btn2">Delete</button>
     </td>
         </tr>`}).join("")
-        tbodyElement.innerHTML=data.info[0]
+        tbodyElement.innerHTML=data.info[0].nik
 }
 
 export{tampilData}
