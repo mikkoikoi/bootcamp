@@ -16,7 +16,7 @@ function tampilData (data) {
     console.log(data.info[0])
     const tbodyElement = document.getElementById("databody")
     data.info.map((data)=>{
-        console.log(data)
+        console.log(data.nik)
         return `<tr>
     <td>${data.nik}</td>
     <td>${data.nama}</td>
