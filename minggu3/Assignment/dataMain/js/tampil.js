@@ -15,8 +15,7 @@ function tampilData (data) {
     console.log(data)
     console.log(data.info[0])
     const tbodyElement = document.getElementById("databody")
-    data.info.map((data)=>{
-        console.log(data.nik)
+    const halo = data.info.map((data)=>{
         return `<tr>
     <td>${data.nik}</td>
     <td>${data.nama}</td>
@@ -26,7 +25,7 @@ function tampilData (data) {
         <button class="button button2" data-del="${data.nik}" id="btn2">Delete</button>
     </td>
         </tr>`}).join("")
-        tbodyElement.innerHTML=data.info[0].nik
+        tbodyElement.innerHTML=halo
 }
 
 export{tampilData}
