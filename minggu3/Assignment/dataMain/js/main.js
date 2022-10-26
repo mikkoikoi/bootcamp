@@ -7,7 +7,14 @@ import { onDelete } from "./delete.js";
 import { onEdit } from "./edit.js";
 import { tampilData } from "./tampil.js";
 
-window.userData = []
+window.userData =[]
+
+
+fetch('iniData.json')
+.then((response) => {
+    console.log(response)
+    return response.json();
+  })
 
 
 document.addEventListener("DOMContentLoaded", (event)=> {
