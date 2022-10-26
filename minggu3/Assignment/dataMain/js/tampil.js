@@ -15,7 +15,9 @@ function tampilData (data) {
     console.log(data)
     console.log(data.info[0])
     const tbodyElement = document.getElementById("databody")
-    data.info.map((data, i)=>`<tr>
+    data.info.map((data)=>{
+        console.log(data)
+        return `<tr>
     <td>${data.nik}</td>
     <td>${data.nama}</td>
     <td>${data.umur}</td>
@@ -23,7 +25,7 @@ function tampilData (data) {
         <button class="button" data-edit="${data.nama}" id="btn1">Edit</button>
         <button class="button button2" data-del="${data.nik}" id="btn2">Delete</button>
     </td>
-        </tr>`).join("")
+        </tr>`}).join("")
         tbodyElement.innerHTML=data.info[0]
 }
 
