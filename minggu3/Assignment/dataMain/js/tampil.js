@@ -13,7 +13,7 @@
 //   })
 function tampilData (data) {
     console.log(data)
-    console.log(data[0])
+    console.log(data.data[0])
     const tbodyElement = document.getElementById("databody")
     // const rows = window.userData.map((data, i)=>`<tr>
     // <td>${data.nik}</td>
