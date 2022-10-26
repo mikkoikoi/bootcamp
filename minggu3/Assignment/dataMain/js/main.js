@@ -10,9 +10,7 @@ import { tampilData } from "./tampil.js";
 let datas
 
 
-datas = fetch('./js/iniData.json', {
-    method: 'GET'
-})
+datas = fetch('./js/iniData.json')
 .then((response) => {
     console.log(response)
     if (!response.ok) {
@@ -21,7 +19,8 @@ datas = fetch('./js/iniData.json', {
     return response.json();
   })
   .then((data) => {
-      tampilData(data)
+    console.log(typeof(data))
+    tampilData(data)
   })
   
   console.log(datas)
@@ -50,3 +49,4 @@ document.addEventListener("DOMContentLoaded", (event)=> {
 
 
 
+export{datas}

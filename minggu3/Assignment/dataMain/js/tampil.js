@@ -1,3 +1,16 @@
+// fetch('./js/iniData.json', {
+//     method: 'GET'
+// })
+// .then((response) => {
+//     console.log(response)
+//     if (!response.ok) {
+//       throw new Error(`HTTP error, status = ${response.status}`);
+//     }
+//     return response.json();
+//   })
+//   .then((data) => {
+//     console.log(typeOf (data))
+//   })
 function tampilData (data) {
     console.log(data)
     const tbodyElement = document.getElementById("databody")
