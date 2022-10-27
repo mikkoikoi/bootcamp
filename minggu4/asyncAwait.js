@@ -1,38 +1,39 @@
 function cobaPromise() {
   return new Promise((resolve, reject) => {
-    const waktu = 5500;
+    const waktu = 4400;
     if (waktu < 5000) {
       setTimeout(() => {
-        resolve("selesai");
-      }, 2000);
+        resolve('selesai bray');
+      }, waktu);
     } else {
       // PromiseRejectionEvent('lama')
       // console.log(PromiseRejectionEvent.promise)
       // console.log(PromiseRejectionEvent.reason)
       // reject ('lama')
-      reject();
+      reject('kelamaan cuy');
     }
   });
 }
 
-// const coba = cobaPromise
 
+// no async
+// const coba = cobaPromise()
+// coba
+//     .then((coba) => console.log(coba))
+//     .catch((coba) => console.log(coba))
+
+
+// with async
 async function cobaAsync() {
-  return await cobaPromise()
-    .then((resolve) => {
-      resolve();
-    })
-    .catch((reject) => {
-      console.log(reject)
-    });
+  try {
+    const coba = await cobaPromise();
+    console.log(coba);
+  } catch (e) {
+    console.log(e);
+  }
 }
 
-try {
-  cobaAsync();
-} catch (e) {
-  alert(e);
-}
 
-// let i = document.getElementById("btn");
-// i.addEventListener("unhandledrejection", alert("halo"));
+let i = document.getElementById("btn");
+i.addEventListener("click", cobaAsync());
 
