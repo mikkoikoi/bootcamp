@@ -18,7 +18,7 @@ function cobaPromise() {
 // const coba = cobaPromise
 
 async function cobaAsync() {
-  const coba = await cobaPromise()
+  return await cobaPromise()
     .then((resolve) => {
       resolve();
     })
@@ -27,11 +27,12 @@ async function cobaAsync() {
     });
 }
 
-let i = document.getElementById("btn");
-i.addEventListener("unhandledrejection", alert("halo"));
-
 try {
   cobaAsync();
 } catch (e) {
   alert(e);
 }
+
+// let i = document.getElementById("btn");
+// i.addEventListener("unhandledrejection", alert("halo"));
+
