@@ -16,4 +16,8 @@ async function cobaAsync () {
     console.log(coba)
 }
 
-cobaAsync()
+try {
+    cobaAsync()
+    } catch (e) {
+        alert(e)
+    }
