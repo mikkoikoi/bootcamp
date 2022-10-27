@@ -1,12 +1,14 @@
 function cobaPromise () {
     return new Promise (resolve => {
-        const waktu = 3000
+        const waktu = 5500
         if(waktu < 5000) {
         setTimeout(() => {
             resolve('selesai')
         }, 2000)
         } else {
             PromiseRejectionEvent('lama')
+            console.log(PromiseRejectionEvent.promise)
+            console.log(PromiseRejectionEvent.reason)
         }
     })
 }
