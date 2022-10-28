@@ -9,73 +9,71 @@ const second = document.querySelector('.second')
 const third = document.querySelector('.third')
 const btn = document.querySelector('.btn')
 
-// btn.addEventListener('click', () => {
-//   setTimeout(() => {
-//     first.style.color = 'red'
-//     setTimeout(() => {
-//       second.style.color = 'blue'
-//       setTimeout(() => {
-//         third.style.color = 'green'
-//       }, 2000)
-//     }, 3000)
-//   }, 1000)
-// })
-
-// btn.addEventListener('click', () => {
-//     setTimeout(() => {
-//         first.style.color = 'red'
-//     , 1000});
-//     setTimeout(() => {
-//         first.style.color = 'red'
-//     , 1000});
-//     setTimeout(() => {
-//         first.style.color = 'red'
-//     , 1000});
-// })
-
-// btn.addEventListener('click', () => {
-//     return new Promise(function (resolve, reject) {
-//         setTimeout(() => {
-//             resolve(first.style.color = "red")
-//         }, 1000)
-//         setTimeout(() => {
-//             resolve(second.style.color = "blue")
-//         }, 2000)
-//         setTimeout(() => {
-//             resolve(third.style.color = "green")
-//         }, 3000)
-//     })
-// })
+btn.addEventListener('click', () => {
+  setTimeout(() => {
+    first.style.color = 'red'
+    setTimeout(() => {
+      second.style.color = 'blue'
+      setTimeout(() => {
+        third.style.color = 'green'
+      }, 2000)
+    }, 3000)
+  }, 1000)
+})
 
 btn.addEventListener('click', () => {
-    return new Promise(function (resolve) {
-        resolve()
-    })
-    .then(() => {
+    setTimeout(() => {
+        first.style.color = 'red'
+    , 1000});
+    setTimeout(() => {
+        first.style.color = 'red'
+    , 1000});
+    setTimeout(() => {
+        first.style.color = 'red'
+    , 1000});
+})
+
+btn.addEventListener('click', () => {
+    return new Promise(function (resolve, reject) {
         setTimeout(() => {
-            console.log("hehe")
-            first.style.color ="red"
+            resolve(first.style.color = "red")
         }, 1000)
-        return new Promise(function (resolve){
-          resolve()  
-        })
-    })
-    .then(() => {
         setTimeout(() => {
-            console.log("heha")
-            second.style.color =  "blue"
+            resolve(second.style.color = "blue")
         }, 2000)
-        return new Promise(function (resolve) {
-            resolve()
-        })
-    })
-    .then(() => {
-        console.log("hihi")
         setTimeout(() => {
-            third.style.color = "green"
+            resolve(third.style.color = "green")
         }, 3000)
     })
 })
+
+
+
+// .then(() => {
+    //     setTimeout(() => {
+    //         console.log("hehe")
+    //         first.style.color ="red"
+    //     }, 1000)
+    //     return new Promise(function (resolve){
+    //       resolve()  
+    //     })
+    // })
+    // .then(() => {
+    //     setTimeout(() => {
+    //         console.log("heha")
+    //         second.style.color =  "blue"
+    //     }, 2000)
+    //     return new Promise(function (resolve) {
+    //         resolve()
+    //     })
+    // })
+    // .then(() => {
+    //     console.log("hihi")
+    //     setTimeout(() => {
+    //         third.style.color = "green"
+    //     }, 3000)
+    // })
+// }
 
 
 //     .then(() => {
