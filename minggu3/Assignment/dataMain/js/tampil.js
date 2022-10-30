@@ -38,11 +38,11 @@ function tampilData() {
       }
       
       $(".btn1").on("click", function () {
-        onEdit($(this).data("id"));
+        onEdit($(this).data("edit"));
       });
 
       $(".btn2").on("click", function () {
-        onDelete($(this).data("id"));
+        onDelete($(this).data("del"));
       });
 
     })();
