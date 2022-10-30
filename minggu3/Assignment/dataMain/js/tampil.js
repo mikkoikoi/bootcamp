@@ -37,14 +37,13 @@ function tampilData() {
         // console.log(dataMain[i].id);
       }
       
-      $(".btn1").on("click", function () {
-        onEdit($(this).data("edit"));
-      });
+    //   $(".btn1").on("click", function () {
+    //     onEdit($(this).data("edit"));
+    //   });
 
       $(".btn2").on("click", function () {
-        // onDelete($(this).data("del"));
-        console.log(dataMain[i].id)
-        console.log(id)
+        console.log($(this).data("del"));
+        
       });
 
     })();
