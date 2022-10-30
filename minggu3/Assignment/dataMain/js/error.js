@@ -5,6 +5,4 @@ class Err extends Error {
     }
 }
 
-
-
 export {Err}

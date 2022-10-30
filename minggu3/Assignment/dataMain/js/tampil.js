@@ -1,31 +1,54 @@
-// fetch('./js/iniData.json', {
-//     method: 'GET'
-// })
-// .then((response) => {
-//     console.log(response)
-//     if (!response.ok) {
-//       throw new Error(`HTTP error, status = ${response.status}`);
-//     }
-//     return response.json();
-//   })
-//   .then((data) => {
-//     console.log(typeOf (data))
-//   })
-function tampilData (data) {
-    console.log(data)
-    console.log(data.info[0])
-    const tbodyElement = document.getElementById("databody")
-    const halo = data.info.map((data)=>{
-        return `<tr>
-    <td>${data.nik}</td>
-    <td>${data.nama}</td>
-    <td>${data.umur}</td>
-    <td>
-        <button class="button" data-edit="${data.nama}" id="btn1">Edit</button>
-        <button class="button button2" data-del="${data.nik}" id="btn2">Delete</button>
-    </td>
-        </tr>`}).join("")
-        tbodyElement.innerHTML=halo
+import { onDelete } from "./delete.js";
+import { onEdit } from "./edit.js";
+
+function tampilData() {
+  try {
+    let tbodyElement = document.getElementById("databody");
+    (async () => {
+      const response = await fetch("http://104.248.154.192:3005/person");
+      const iniData = await response.json();
+      const dataMain = iniData.data;
+      tbodyElement.innerHTML = "";
+
+      for (let i in dataMain) {
+          let editButton = `<button
+          data-edit="${dataMain[i].id}"
+          type="button"
+          class="button btn1"
+      >Edit</button>`;
+
+        let deleteButton = `<button 
+        data-del="${dataMain[i].id}"
+        type="button"
+        class="button btn2"
+    >Delete</button>`;
+
+
+        let tableRow = `<tr>
+                            <td ${dataMain[i]}>${dataMain[i].nik}</td>
+                            <td ${dataMain[i]}>${dataMain[i].nama}</td>
+                            <td ${dataMain[i]}>${dataMain[i].alamat}</td>
+                            <td>
+                                ${editButton}
+                                ${deleteButton}
+                            </td>
+                        </tr>`;
+        tbodyElement.innerHTML += tableRow;
+        console.log(dataMain[i].id);
+      }
+      
+      $(".btn1").on("click", function () {
+        onEdit($(this).data("id"));
+      });
+
+      $(".btn2").on("click", function () {
+        onDelete($(this).data("id"));
+      });
+
+    })();
+  } catch (e) {
+    console.error(e);
+  }
 }
 
-export{tampilData}
+export { tampilData };

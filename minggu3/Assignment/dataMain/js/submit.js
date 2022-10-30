@@ -3,17 +3,17 @@ import { insertNewRecord } from "./add.js"
 import { resetForm } from "./reset.js"
 import { updateRecord } from "./update.js"
 import { Err } from "./error.js"
+import { tampilData } from "./tampil.js"
 
 
 window.selectedRow = 'insert'
 
 function onFormSubmit(event) {
-    
     try { 
         
         let data = readFormData();
         
-        if(data.nik == "" || data.nama == "" || data.umur == ""){
+        if(data.nik == "" || data.nama == "" || data.alamat == ""){
         throw new Err("Data harus diisi!");
         }
         
@@ -21,7 +21,7 @@ function onFormSubmit(event) {
         if (!karakter.test(data.nik)) {
             throw new Err ('NIK harus berisi 16 karakter');
             
-        }if (isNaN(data.nik) || isNaN(data.umur)) {
+        }if (isNaN(data.nik)) {
             throw new Err ("Harus diisi dengan angka positif!");
 
         }
@@ -38,8 +38,7 @@ function onFormSubmit(event) {
         console.log(data)
         // readFormData()
         event.preventDefault();
-        resetForm()
-       
+       tampilData()
     
         } catch (e) {
             alert(e);

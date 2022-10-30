@@ -1,20 +1,71 @@
-import {tampilData} from "./tampil.js"
+import { tampilData } from "./tampil.js";
 
-function insertNewRecord(data) {
-    console.log(data)
-    window.userData.push(data)
-    tampilData()
-    // let table = document.getElementById("listData").getElementsByTagName('tbody')[0];
-    // let newRow = table.insertRow(table.length);
-    // let cell1 = newRow.insertCell(0);
-    // cell1.innerHTML = data.nik;
-    // let cell2 = newRow.insertCell(1);
-    // cell2.innerHTML = data.nama;
-    // let cell3 = newRow.insertCell(2);
-    // cell3.innerHTML = data.umur;
-    // let cell4 = newRow.insertCell(3);
-    // cell4.innerHTML = `<button class="button" data-edit="${data.nama}" id="btn1">Edit</button>
-    //                    <button class="button button2" data-del="${data.nik}" id="btn2">Delete</button>`
+function insertNewRecord() {
+try {
+  let inputNikObj = document.getElementById("nik");
+  let inputNamaObj = document.getElementById("nama");
+  let inputAlamatObj = document.getElementById("alamat");
+
+
+  let inputNik = inputNikObj.value;
+  let inputNama = inputNamaObj.value;
+  let inputAlamat = inputAlamatObj.value;
+
+
+  let emptyField = [];
+        let isEmpty = 0;
+        if (inputNik =='') {
+            emptyField.push('NIK');
+            isEmpty = 1;
+        }
+
+        if (inputNama =='') {
+            emptyField.push('NAMA');
+            isEmpty = 1;
+        }
+
+        if (inputAlamat =='') {
+            emptyField.push('ALAMAT');
+            isEmpty = 1;
+        }
+
+
+  
+  inputNikObj.value = ''
+  inputNamaObj.value = ''
+  inputAlamatObj.value = ''
+
+
+ 
+
+  try {
+    (async () => {
+      const response = await fetch("http://104.248.154.192:3005/person", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nik: inputNik,
+          nama: inputNama,
+          alamat: inputAlamat,
+        }),
+      });
+      const responded = await response.json();
+      if (responded.message === "success") {
+        alert(`Input data ${responded.message}`);
+      }
+
+      tampilData();
+    })();
+    } catch (error) {
+        alert(`(ERROR ${error.code}) ${error.message}`);
+    }
+
+    }catch (e) {
+        alert (e)
+    }
 }
 
-export{insertNewRecord}
+export { insertNewRecord }
