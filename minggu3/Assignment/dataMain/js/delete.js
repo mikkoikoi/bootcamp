@@ -2,7 +2,7 @@ import { resetForm } from "./reset.js";
 import { tampilData } from "./tampil.js";
 
 function onDelete(id) {
-    console.log(id)
+    console.log("halooo")
   try {
     (async () => {
       const del = await fetch(`http://104.248.154.192:3005/person/${id}`, {

@@ -34,7 +34,7 @@ function tampilData() {
                             </td>
                         </tr>`;
         tbodyElement.innerHTML += tableRow;
-        console.log(dataMain[i].id);
+        // console.log(dataMain[i].id);
       }
       
       $(".btn1").on("click", function () {
@@ -42,7 +42,9 @@ function tampilData() {
       });
 
       $(".btn2").on("click", function () {
-        onDelete($(this).data("del"));
+        // onDelete($(this).data("del"));
+        console.log(dataMain[i].id)
+        console.log(id)
       });
 
     })();
