@@ -34,15 +34,15 @@ function tampilData() {
                             </td>
                         </tr>`;
         tbodyElement.innerHTML += tableRow;
-        // console.log(dataMain[i].id);
+        
       }
       
       $(".btn1").on("click", function () {
-        onEdit($(this).data("edit"));
+        onEdit(this);
       });
 
       $(".btn2").on("click", function () {
-        console.log($(this).data("del"));
+        onDelete($(this).data("del"));
       });
 
     })();

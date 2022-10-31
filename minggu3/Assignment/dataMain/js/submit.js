@@ -1,6 +1,6 @@
 import { readFormData} from "./read.js"
 import { insertNewRecord } from "./add.js"
-import { resetForm } from "./reset.js"
+// import { resetForm } from "./reset.js"
 import { updateRecord } from "./update.js"
 import { Err } from "./error.js"
 import { tampilData } from "./tampil.js"
@@ -31,17 +31,17 @@ function onFormSubmit(event) {
             console.log("insertNewRecord", window.selectedRow)
             
         }else{
-            updateRecord(data);
+            const id = document.getElementById("nik").dataset.edit
+            updateRecord(data, id);
             console.log("updateRecord")
             
         }
         console.log(data)
-        // readFormData()
         event.preventDefault();
        tampilData()
     
         } catch (e) {
-            alert(e);
+            console.log(e);
         }
     }
 
