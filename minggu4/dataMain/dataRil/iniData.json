@@ -1,0 +1,7 @@
+{
+    "info" : [
+        {"nik" : 1111222233334444, "nama" : "miko", "umur" : 19},
+        {"nik" : 1111222233334445, "nama" : "takahashi", "umur" : 17},
+        {"nik" : 1111222233334446, "nama" : "nayuta", "umur" : 20}
+            ]
+}

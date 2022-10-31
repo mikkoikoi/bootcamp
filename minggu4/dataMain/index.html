@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        test
+    </title>
+</head>
+<link rel="stylesheet" href="./css/style.css">
+
+
+<div class="form-data">
+    <form id="form1">
+        <div>
+            <label>NIK</label>
+            <input type="text" name="nik" id="nik">
+        </div>
+        <div>
+            <label>NAMA</label>
+            <input type="text" name="nama" id="nama">
+        </div>
+        <div>
+            <label>ALAMAT</label>
+            <input type="text" name="alamat" id="alamat">
+        </div>
+        <div  class="form-action-buttons">
+            <input type="submit" id="btnsimpan" value="Submit">
+            
+        </div>
+    </form>
+</div>
+<br/>
+<div class = "tabel-data">
+    <table class="list" id="listData">
+        <thead>
+            <tr>
+                <th>NIK</th>
+                <th>NAMA</th>
+                <th>ALAMAT</th>
+                <th>AKSI</th>
+            </tr>
+        </thead>
+        <tbody id="databody">
+            
+        </tbody>
+    </table>
+</div>
+<script src="js/main.js" type="module">
+
+</script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+</body>
+</html> 
