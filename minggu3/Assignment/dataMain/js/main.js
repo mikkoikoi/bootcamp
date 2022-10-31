@@ -3,8 +3,8 @@ import { onFormSubmit} from "./submit.js";
 // import { insertNewRecord } from "./add.js";
 // import { resetForm } from "./reset.js";
 // import { updateRecord } from "./update.js";
-import { onDelete } from "./delete.js";
-import { onEdit } from "./edit.js";
+// import { onDelete } from "./delete.js";
+// import { onEdit } from "./edit.js";
 import { tampilData } from "./tampil.js";
 
   
