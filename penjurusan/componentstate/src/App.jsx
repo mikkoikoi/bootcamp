@@ -1,5 +1,8 @@
 import "./App.css";
-import { useState } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
+import TableDataWarga from "./components/table/tableDataWarga";
+import InputDataWarga from "./components/input/inputDataWarga";
 
 function App() {
   const [dataWarga, setDataWarga] = useState([]);
@@ -9,6 +12,24 @@ function App() {
     alamat: "",
   });
   const [editIndex, setEditIndex] = useState(undefined);
+
+  // useEffect(() => {
+  //   alert ('App rendered on didMount')
+  // })
+
+  // useEffect(()=> {
+  //   alert('App rendered on update)
+  // })
+
+  useEffect(() => {
+    setDataWarga([
+      {
+        nama: "miko",
+        jenisKelamin: "lakik",
+        alamat: "bogor",
+      },
+    ]);
+  }, []);
 
   const handleInputNama = (e) => {
     setDataInput((prev) => ({
@@ -29,19 +50,12 @@ function App() {
       alamat: e.target.value,
     }));
   };
-  const handleInput = (e) => {
-    setDataInput((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
 
   const handleSubmit = (e) => {
     console.log("submit clicked!");
     if (editIndex !== undefined) {
       setDataWarga((prev) => {
         let editData = prev;
-        
         editData[editIndex] = dataInput;
         return editData;
       });
@@ -52,7 +66,7 @@ function App() {
     setEditIndex(undefined);
     e.preventDefault();
   };
-  
+
   const handleEdit = (e) => {
     console.log("editing");
     setEditIndex(e);
@@ -65,7 +79,7 @@ function App() {
 
   return (
     <div className="App">
-      <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}>
         <label htmlFor="nama">Nama :</label>
         <input
           type="text"
@@ -93,34 +107,19 @@ function App() {
           onChange={handleInputAlamat}
         />
         <input type="submit" value="Submit" />
-      </form>
-      <table style={{ border: "1px solid black" }}>
-        <thead>
-          <tr>
-            <td>No</td>
-            <td>Nama</td>
-            <td>Jenis Kelamin</td>
-            <td>Alamat</td>
-            <td>Aksi</td>
-          </tr>
-        </thead>
-        <tbody>
-          {dataWarga.map((item, i) => {
-            return (
-              <tr key={`${i}`}>
-                <td>{`${i + 1}`}</td>
-                <td>{item.nama}</td>
-                <td>{item.jenisKelamin}</td>
-                <td>{item.alamat}</td>
-                <td>
-                  <button onClick={() => handleEdit(i)}>Edit</button>
-                  <button onClick={() => handleDel(i)}>Delete</button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      </form> */}
+      <InputDataWarga
+        data={dataWarga}
+        handleSubmit={handleSubmit}
+        handleInputNama={handleInputNama}
+        handleInputKelamin={handleInputKelamin}
+        handleInputAlamat={handleInputAlamat}
+      />
+      <TableDataWarga
+        data={dataWarga}
+        handleEdit={handleEdit}
+        handleDel={handleDel}
+      />
     </div>
   );
 }
