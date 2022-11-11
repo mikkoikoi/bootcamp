@@ -129,6 +129,7 @@ function Lone() {
             style={{
               display: "flex",
               gap: 20,
+              marginBottom: "2rem"
             }}
             onSubmit={handleSubmit}
           >

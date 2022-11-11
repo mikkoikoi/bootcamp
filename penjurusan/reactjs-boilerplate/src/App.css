@@ -1,4 +1,6 @@
-
+.App {
+  text-align: center;
+}
 
 .App-logo {
   height: 40vmin;
@@ -26,6 +28,18 @@
   color: #61dafb;
 }
 
+table,
+tr,
+td,
+th {
+  border: 1px solid white;
+  color: white;
+}
+
+label {
+  color: white;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -34,7 +48,3 @@
     transform: rotate(360deg);
   }
 }
-/* table, tr, td, th {
-  border : 1px solid black;
-} */
-

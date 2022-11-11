@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const App2 = () => {
   const headerPerpus = [
@@ -13,22 +13,21 @@ const App2 = () => {
     "Aksi",
   ];
 
-  const [daftarBuku, setDaftarBuku] = useState([
-    {
-      judulBuku: "Hujan",
-      penulis: "Tere Liye",
-      tahun: 2016,
-      jumlahHal: 514,
-      rak: "76 A",
-    },
-    {
-      judulBuku: "Hello Salma!",
-      penulis: "Farhan Kebab",
-      tahun: 2022,
-      jumlahHal: 234,
-      rak: "9 C",
-    },
-  ]);
+  const [daftarBuku, setDaftarBuku] = useState([]);
+
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("daftarBuku"));
+    console.log("halo");
+    if (items) {
+      setDaftarBuku(items);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log("hehe");
+    localStorage.setItem("daftarBuku", JSON.stringify(daftarBuku));
+  }, [daftarBuku]);
+
   const [dataInput, setDataInput] = useState({
     judulBuku: "",
     penulis: "",
@@ -37,9 +36,14 @@ const App2 = () => {
     rak: "",
   });
 
+  const alphabet = ["A", "B", "C", "D"];
+  const number = [1, 2, 3, 4, 5];
+
+
   const [editIndex, setEditIndex] = useState(undefined);
 
   const handleDataInput = (e) => {
+   console.log(e.target.value)
     setDataInput((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -51,6 +55,7 @@ const App2 = () => {
       setDaftarBuku((prev) => {
         let editData = prev;
         editData[editIndex] = dataInput;
+        localStorage.setItem("daftarBuku", JSON.stringify(editData));
         return editData;
       });
     } else {
@@ -66,38 +71,16 @@ const App2 = () => {
       rak: "",
     });
     setEditIndex(undefined);
-    e.preventDefault()
-  };
-  const handleEdit = (e) => {
-    console.log("editing");
-    setEditIndex(e);
-    setDataInput(daftarBuku[e]);
+    e.preventDefault();
   };
 
   const handleDel = (e) => {
     setDaftarBuku((prev) => prev.filter((item, i) => i !== e));
   };
-
-  // const daftarBuku = [
-  //   {
-  //     judulBuku: "Hujan",
-  //     penulis: "Tere Liye",
-  //     tahun: 2016,
-  //     jumlahHal: 514,
-  //     rak: "76 A",
-  //   },
-  //   {
-  //     judulBuku: "Hello Salma!",
-  //     penulis: "Farhan Kebab",
-  //     tahun: 2022,
-  //     jumlahHal: 234,
-  //     rak: "9 C",
-  //   },
-  // ];
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="judulBuku">Judul Buku</label>
+        <label htmlFor="judulBuku">Judul Buku :</label>
         <input
           type="text"
           name="judulBuku"
@@ -105,7 +88,7 @@ const App2 = () => {
           onChange={handleDataInput}
         />
         <br />
-        <label htmlFor="penulis">Penulis</label>
+        <label htmlFor="penulis">Penulis :</label>
         <input
           type="text"
           name="penulis"
@@ -113,7 +96,7 @@ const App2 = () => {
           onChange={handleDataInput}
         />
         <br />
-        <label htmlFor="tahun">Tahun</label>
+        <label htmlFor="tahun">Tahun :</label>
         <input
           type="text"
           name="tahun"
@@ -121,7 +104,7 @@ const App2 = () => {
           onChange={handleDataInput}
         />
         <br />
-        <label htmlFor="jumlahHal">Jumlah Halaman</label>
+        <label htmlFor="jumlahHal">Jumlah Halaman :</label>
         <input
           type="text"
           name="jumlahHal"
@@ -129,13 +112,34 @@ const App2 = () => {
           onChange={handleDataInput}
         />
         <br />
-        <label htmlFor="rak">Rak</label>
-        <input
-          type="text"
-          name="rak"
-          value={dataInput.rak}
-          onChange={handleDataInput}
-        />
+        <label htmlFor="rak">Rak :</label>
+        <select name="rak" value={dataInput.rak} onChange={handleDataInput}>
+         
+        <option  value="" disabled>
+                  Pilih Rak
+                </option>
+          {alphabet
+            .reduce((a, b) => {
+      
+
+              return [...a, ...number.map((num, i) => `${b}-${num}`)];
+            }, [])
+            .map((item, i) => {
+              return (
+                <option key={`buat-drop-${i}`} value={item}>
+                  {item}
+                </option>
+              );
+            })}
+          {/* <option value="Ke-satu">1</option>
+          <option value="Ke-dua">2</option>
+          <option value="Ke-tiga">3</option>
+          <option value="Ke-empat">4</option>
+          <option value="Ke-lima">5</option>
+          <option value="Ke-enam">6</option>
+          <option value="Ke-tujuh">7</option>
+          <option value="Ke-delapan">8</option> */}
+        </select>
         <input type="submit" value="Submit" />
       </form>
       <table>

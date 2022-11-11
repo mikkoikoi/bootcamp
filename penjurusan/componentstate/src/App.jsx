@@ -79,35 +79,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* <form onSubmit={handleSubmit}>
-        <label htmlFor="nama">Nama :</label>
-        <input
-          type="text"
-          id="nama"
-          name="nama"
-          value={dataInput.nama}
-          onChange={handleInputNama}
-        />
-        <br />
-        <label htmlFor="jenisKelamin">Jenis Kelamin :</label>
-        <input
-          type="text"
-          id="jenisKelamin"
-          name="jenisKelamin"
-          value={dataInput.jenisKelamin}
-          onChange={handleInputKelamin}
-        />
-        <br />
-        <label htmlFor="alamat">Alamat :</label>
-        <input
-          type="text"
-          id="alamat"
-          name="alamat"
-          value={dataInput.alamat}
-          onChange={handleInputAlamat}
-        />
-        <input type="submit" value="Submit" />
-      </form> */}
       <InputDataWarga
         data={dataWarga}
         handleSubmit={handleSubmit}

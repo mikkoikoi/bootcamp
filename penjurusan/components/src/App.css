@@ -1,4 +1,6 @@
-
+.App {
+  text-align: center;
+}
 
 .App-logo {
   height: 40vmin;
@@ -34,7 +36,3 @@
     transform: rotate(360deg);
   }
 }
-/* table, tr, td, th {
-  border : 1px solid black;
-} */
-
