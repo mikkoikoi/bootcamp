@@ -1,9 +1,24 @@
 import React, { useEffect, useState } from "react";
 import ApiService from "@/src/services/client";
 import Spinner from "@/src/components/loader3";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import {
+  Form,
+  Input,
+  Button,
+  Table,
+  Space,
+  message,
+  Popconfirm,
+  Card,
+  Row,
+  Col,
+} from "antd";
 
+const { useForm } = Form;
 const DataPenduduk = () => {
   const [dataPenduduk, setDataPenduduk] = useState([]);
+  const [form] = useForm();
   const [dataInput, setDataInput] = useState({
     nik: "",
     nama: "",
@@ -11,6 +26,66 @@ const DataPenduduk = () => {
   });
   const [editId, setEditId] = useState(undefined);
   const [loading, setLoading] = useState(true);
+  const onFinish = (values) => {
+    console.log("Success:", values);
+  };
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+  const columns = [
+    {
+      title: "No",
+      dataIndex: "no",
+      render: (value, data, i) => i + 1,
+    },
+    {
+      title: "Nik",
+      dataIndex: "nik",
+    },
+    {
+      title: "Nama",
+      dataIndex: "nama",
+    },
+    {
+      title: "Alamat",
+      dataIndex: "alamat",
+    },
+    {
+      title: "Aksi",
+      dataIndex: "aksi",
+      render: (value, data) => (
+        <Space>
+          <Button
+            icon={<EditOutlined />}
+            type="dashed"
+            onClick={() => handleEdit(data)}
+          >
+            Edit
+          </Button>
+          <Popconfirm
+            title="Are you sure to delete this task?"
+            onConfirm={() => handleDel(data.id)}
+            onCancel={cancel}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Button icon={<DeleteOutlined />} type="primary" danger>
+              Delete
+            </Button>
+          </Popconfirm>
+        </Space>
+      ),
+    },
+  ];
+
+  const confirm = (e) => {
+    console.log(e);
+    message.success("uda diapus");
+  };
+  const cancel = (e) => {
+    console.log(e);
+    message.error("gajadi diapus");
+  };
 
   const fetchDataPenduduk = () => {
     ApiService.request({
@@ -26,13 +101,14 @@ const DataPenduduk = () => {
 
   const postDataPenduduk = () => {
     setLoading(true);
+    const { nik, nama, alamat } = form.getFieldsValue();
     ApiService.request({
       method: "post",
       url: "/person",
       data: {
-        nik: dataInput.nik,
-        nama: dataInput.nama,
-        alamat: dataInput.alamat,
+        nik: nik,
+        nama: nama,
+        alamat: alamat,
       },
     }).then((res) => {
       fetchDataPenduduk(res.data.data);
@@ -41,14 +117,14 @@ const DataPenduduk = () => {
 
   const putDataPenduduk = (id) => {
     setLoading(true);
-
+    const { nik, nama, alamat } = form.getFieldsValue();
     ApiService.request({
       method: "put",
       url: `/person/${id}`,
       data: {
-        nik: dataInput.nik,
-        nama: dataInput.nama,
-        alamat: dataInput.alamat,
+        nik: nik,
+        nama: nama,
+        alamat: alamat,
       },
     }).then((res) => {
       fetchDataPenduduk(res.data.data);
@@ -79,25 +155,18 @@ const DataPenduduk = () => {
       postDataPenduduk();
       // return [...id, dataInput]
     }
-    setDataInput({
-      nik: "",
-      nama: "",
-      alamat: "",
-    });
+    form.resetFields();
     setEditId(undefined);
-    e.preventDefault();
   };
 
   const handleDel = (id) => {
-    const onOke = window.confirm("Hapus data ini?");
-    if (onOke) {
-      delDataPenduduk(id);
-    }
+    delDataPenduduk(id);
+    message.success("uda diapus");
   };
 
-  const handleEdit = (id) => {
-    setEditId(id);
-    setDataInput(dataPenduduk.find((item) => item.id === id));
+  const handleEdit = (data) => {
+    setEditId(data.id);
+    form.setFieldsValue(data);
   };
 
   useEffect(() => {
@@ -107,87 +176,100 @@ const DataPenduduk = () => {
   return !loading ? (
     <div
       style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: "100vh",
-        flexDirection: "column"
+        marginTop: "3rem",
       }}
     >
-      <form
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          marginBottom: "3rem"
-        }}
-        onSubmit={handleSubmit}
-      >
-        <div>
-          <label>NIK :</label>
-          <input
+      <Row justify={"center"} gutter={[40,40]}>
+        <Col span={22}>
+          <Card
+            title="Default size card"
             style={{
-              width: "10rem",
+              width: "100%",
             }}
-            type="text"
-            name="nik"
-            value={dataInput.nik}
-            placeholder="Masukkan Nik"
-            onChange={handleDataInput}
-          />
-        </div>
-        <div>
-          <label>NAMA :</label>
-          <input
-            style={{
-              width: "10rem",
-            }}
-            type="text"
-            name="nama"
-            value={dataInput.nama}
-            placeholder="Masukkan Nama"
-            onChange={handleDataInput}
-          />
-          <div>
-            <label>ALAMAT :</label>
-            <input
+            // extra={<a href="#">More</a>}
+          >
+            <Form
+              form={form}
               style={{
-                width: "10rem",
+                display: "flex",
+                flexDirection: "column",
+                marginBottom: "3rem",
               }}
-              type="text"
-              name="alamat"
-              value={dataInput.alamat}
-              placeholder="Masukkan Alamat"
-              onChange={handleDataInput}
-            />
-          </div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-      <table>
-        <thead>
-          <tr>
-            <th>NIK</th>
-            <th>Nama</th>
-            <th>Alamat</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          {dataPenduduk.map((item, i) => {
-            return (
-              <tr key={`${item.id}-${i}`}>
-                <td>{item.nik}</td>
-                <td>{item.nama}</td>
-                <td>{item.alamat}</td>
-                <td>
-                  <button onClick={() => handleEdit(item.id)}>Edit</button>
-                  <button onClick={() => handleDel(item.id)}>Delete</button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+              name="basic"
+              labelCol={{
+                span: 4,
+              }}
+              wrapperCol={{
+                span: 18,
+              }}
+              initialValues={{
+                remember: true,
+              }}
+              onFinish={handleSubmit}
+              onFinishFailed={onFinishFailed}
+              autoComplete="off"
+            >
+              <Form.Item
+                label="NIK"
+                type="text"
+                name="nik"
+                value={dataInput.nik}
+                placeholder="Masukkan Nik"
+                onChange={handleDataInput}
+                rules={[
+                  {
+                    min: 16,
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+
+              <Form.Item
+                label="Nama :"
+                type="text"
+                name="nama"
+                value={dataInput.nama}
+                placeholder="Masukkan Nama"
+                onChange={handleDataInput}
+              >
+                <Input />
+              </Form.Item>
+
+              <Form.Item
+                label="Alamat :"
+                type="text"
+                name="alamat"
+                value={dataInput.alamat}
+                placeholder="Masukkan Alamat"
+                onChange={handleDataInput}
+              >
+                <Input />
+              </Form.Item>
+
+              <Form.Item
+                wrapperCol={{
+                  offset: 12,
+                  span: 16,
+                }}
+              >
+                <Button
+                  style={{
+                    backgroundColor: "#50C550",
+                  }}
+                  type="primary"
+                  htmlType="submit"
+                >
+                  Submit
+                </Button>
+              </Form.Item>
+            </Form>
+          </Card>
+        </Col>
+        <Col span={22}>
+          <Table rowKey="id" columns={columns} dataSource={dataPenduduk} />
+        </Col>
+      </Row>
     </div>
   ) : (
     <div

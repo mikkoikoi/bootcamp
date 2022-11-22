@@ -1,25 +1,20 @@
-import { useState } from "react";
-import { Button, Form, Input, Checkbox, message } from "antd";
-import { useNavigate } from "react-router-dom";
 import ApiService from "@/src/services/clientBlog";
-// import { Navigate } from "react-router-dom";
-import URLS from "@/src/enums/urls";
+import { Button, Form, Input, Checkbox, message } from "antd";
+import { useState } from "react";
 
 const { useForm } = Form;
-const Login = () => {
-  const [size, setSize] = useState("large");
+const Register = () => {
   const [load, setLoad] = useState(false);
-  const navigate = useNavigate();
-
+  const [size, setSize] = useState("large");
   const [form] = useForm();
-
   const onFinish = (values) => {
-    setLoad(true)
-    const { username, password } = form.getFieldsValue();
+    setLoad(true);
+    const { name, username, password } = form.getFieldsValue();
     ApiService.request({
       method: "post",
-      url: "auth/login",
+      url: "auth/register",
       data: {
+        name,
         username,
         password,
       },
@@ -27,15 +22,9 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         message.success(res.data.message);
-        localStorage.setItem("token", res.data.data.token);
-        setTimeout(() => {
-          setLoad(false)
-          navigate(URLS.PROFILE);
-        }, 2000);
       })
       .catch((err) => {
         console.log(err);
-        setLoad(false)
         if ([400].includes(err.response.status)) {
           message.error(
             <ul>
@@ -48,9 +37,12 @@ const Login = () => {
           message.error(err.response.data.message);
         }
       })
-
+      .finally(() => {
+        setLoad(false);
+      });
     console.log("Success:", values);
   };
+
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
@@ -73,6 +65,18 @@ const Login = () => {
       autoComplete="off"
     >
       <Form.Item
+        label="Name"
+        name="name"
+        rules={[
+          {
+            required: true,
+            message: "Please input your name!",
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
         label="Username"
         name="username"
         rules={[
@@ -84,7 +88,6 @@ const Login = () => {
       >
         <Input />
       </Form.Item>
-
       <Form.Item
         label="Password"
         name="password"
@@ -97,7 +100,6 @@ const Login = () => {
       >
         <Input.Password />
       </Form.Item>
-
       <Form.Item
         name="remember"
         valuePropName="checked"
@@ -108,7 +110,6 @@ const Login = () => {
       >
         <Checkbox>Remember me</Checkbox>
       </Form.Item>
-
       <Form.Item
         wrapperCol={{
           offset: 11,
@@ -116,21 +117,21 @@ const Login = () => {
         }}
       >
         <Button
-        loading={load}
           shape="round"
           size={size}
           style={{
             background:
               "linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)",
           }}
+          loading={load}
           type="primary"
           htmlType="submit"
         >
-          Masuk
+          Daftar
         </Button>
       </Form.Item>
     </Form>
   );
 };
 
-export default Login;
+export default Register;

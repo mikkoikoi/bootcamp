@@ -201,6 +201,7 @@ function App() {
           name="tanggal"
           value={dataInput.tanggal}
           onChange={handleDataInput}
+          format="DDDD MM, YYYY"
         />
         <InputTime
           label="Waktu"

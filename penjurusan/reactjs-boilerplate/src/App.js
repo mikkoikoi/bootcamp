@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import RouteService from "@/src/routes/RouteService";
 // import ApiService from "@/src/services/client"/
-import "./App.css";
+
 
 /**
  * configurasi environment development dan production
